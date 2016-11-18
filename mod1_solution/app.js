@@ -16,18 +16,18 @@
         $scope.message = "Please enter data first";
       } else {
 
-      var lunchList = splitLunch($scope.lunch);
+        var lunchList = splitLunch($scope.lunch);
 
-      if (lunchList <= 3) {
-        $scope.message = "Enjoy!";
-      } else {
-        $scope.message = "Too much!";
-      }}
+        if (lunchList <= 3) {
+          $scope.message = "Enjoy!";
+        } else {
+          $scope.message = "Too much!";
+        }}
     };
 
     function splitLunch (string){
       var comma = ",";
-      var lunchArray = $scope.lunch.split(comma);
+      var lunchArray = string.split(comma);
       var lunchItems = lunchArray.length;
       return lunchItems;
     }
