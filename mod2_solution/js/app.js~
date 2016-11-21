@@ -1,0 +1,13 @@
+(function(){
+  angular.module('ShoppingListCheckOff', [])
+  .controller('ToBuyController', ToBuyController)
+  .controller('AlreadyBoughtController', AlreadyBoughtController)
+
+  function ToBuyController () {
+    var buy = this;
+  }
+
+  function AlreadyBoughtController () {
+    var bought = this;
+  }
+})();
