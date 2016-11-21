@@ -9,12 +9,8 @@
     var buy = this;
 
     buy.items = ShoppingListCheckOffService.getItemsToBuy();
-        
-    buy.removeItem = function (itemIndex) {
-      ShoppingListCheckOffService.removeItem(itemIndex);
-    };
-    buy.addItem = function (name, quantity) {
-      ShoppingListCheckOffService.addItem(name, quantity);
+    buy.buyProcess = function (indexItem) {
+      ShoppingListCheckOffService.buyProcess(indexItem);
     };
   }
 
@@ -44,21 +40,9 @@
 
     // Push buy buttom functionality
 
-    service.removeItem = function (itemIndex) {
-      function removeItem (itemIndex) {
-        itemsToBuy.splice(itemIndex, 1);
-      };
-
-      removeItem(itemIndex);
-    };
-    service.addItem = function (name, quantity) {
-      var item = {name: name, quantity: quantity};
-
-      function addItem (item) {
-        itemsBought.push(item);
-      };
-      
-      addItem(item);
+    service.buyProcess = function (itemIndex) {
+      itemsBought.push(itemsToBuy[itemIndex]);
+      itemsToBuy.splice(itemIndex, 1);
     };
 
     // getItems
