@@ -9,8 +9,8 @@
     var buy = this;
 
     buy.items = ShoppingListCheckOffService.getItemsToBuy();
-    buy.buyProcess = function (indexItem) {
-      ShoppingListCheckOffService.buyProcess(indexItem);
+    buy.buyProcess = function (itemIndex) {
+      ShoppingListCheckOffService.buyProcess(itemIndex);
     };
   }
 
@@ -43,6 +43,7 @@
     service.buyProcess = function (itemIndex) {
       itemsBought.push(itemsToBuy[itemIndex]);
       itemsToBuy.splice(itemIndex, 1);
+      console.log(itemIndex);
     };
 
     // getItems
