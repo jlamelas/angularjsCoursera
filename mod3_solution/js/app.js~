@@ -1,0 +1,9 @@
+(function () {
+		angular
+				.module('NarrowItDownApp', [])
+				.controller('NarrowItDownController', NarrowItDownController);
+		
+		function NarrowItDownController () {
+				var hello = "Hello";
+		}
+})();
