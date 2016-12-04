@@ -8,14 +8,17 @@
 
 		function FoundItems () {
 				var ddo = {
-						scope: {
-								foundItems: '<'
-						},
 						templateUrl: "snippets/founditems.html"
+						// scope: {
+						// 		foundedItems: '<'
+						// },
+						// controller: FoundItemsDirectiveController,
+						// controllerAs: 'list',
+						// bindToController: true
 				};
 				return ddo;
 		}
-		
+
 		NarrowItDownController.$inject = ['MenuSearchService'];
 		function NarrowItDownController (MenuSearchService) {
 				var controller = this;
