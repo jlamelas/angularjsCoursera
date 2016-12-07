@@ -1,5 +1,5 @@
-<div class="clearfix">
-  <h1 class="bg-danger" ng-if="items.found.length == 0">{{items.message}}</h1>
+<div class="notfound">
+  <h1 class="text-danger" ng-if="items.found.length == 0">{{items.message}}</h1>
 </div>
 <table class="table table-hover" ng-if="items.found && items.found.length != 0">
 	<thead>
