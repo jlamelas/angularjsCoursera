@@ -1,44 +1,32 @@
-(function () {
-		'use strict';
+(function (){
 		angular
 				.module('NarrowItDownApp', [])
 				.controller('NarrowItDownController', NarrowItDownController)
 				.service('MenuSearchService', MenuSearchService)
-				.directive('foundItems', FoundItems);
-
-		function FoundItems () {
-				var ddo = {
-						templateUrl: "snippets/founditems.html"
-						// scope: {
-						// 		foundedItems: '<'
-						// },
-						// controller: FoundItemsDirectiveController,
-						// controllerAs: 'list',
-						// bindToController: true
-				};
-				return ddo;
-		}
+				.directive('foundItems', FoundItemsDirective);
 
 		NarrowItDownController.$inject = ['MenuSearchService'];
 		function NarrowItDownController (MenuSearchService) {
-				var controller = this;
-			
-				controller.showFound = function (searchTerm) {
+				var ctrl = this;
+				ctrl.message = 'Nothing found';
+				ctrl.showFound = function (searchTerm) {
 						MenuSearchService.getMatchedMenuItems(searchTerm)
-								.then(function (response) {
-										controller.found = response;
+								.then(function (foundItems) {
+										ctrl.found = foundItems;
 								});
+				};
+				ctrl.removeItem = function (index) {
+						ctrl.found.splice(index, 1);
 				};
 		}
 
 		MenuSearchService.$inject = ['$http'];
 		function MenuSearchService ($http) {
 				var service = this;
-				
 				service.getMatchedMenuItems = function (searchTerm) {
 						var response = $http({
-								method: "GET",
-								url: "https://davids-restaurant.herokuapp.com/menu_items.json"
+								method: 'GET',
+								url: 'https://davids-restaurant.herokuapp.com/menu_items.json'
 						});
 						return response
 								.then(function (response) {
@@ -47,13 +35,38 @@
 										for (var i = 0; i < items.length; i++) {
 												if (items[i].description.includes(searchTerm)) {
 														foundItems.push(items[i]);
-												} else {
-														console.log("Nothing found");
 												}
 										}
 										return foundItems;
 								});
 				};
 		}
-		
+
+		function FoundItemsDirective () {
+				return {
+						templateUrl: 'snippets/founditems.html',
+						scope: {
+								items: '<',
+								onRemove: '&'
+						}
+				};
+		}
 })();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

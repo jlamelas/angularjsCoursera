@@ -1,4 +1,7 @@
-<table class="table table-hover">
+<div class="clearfix">
+  <h1 class="bg-danger" ng-if="items.found.length == 0">{{items.message}}</h1>
+</div>
+<table class="table table-hover" ng-if="items.found && items.found.length != 0">
 	<thead>
 		<tr>
 			<th>#</th>
@@ -9,12 +12,12 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in controller.found">
+		<tr ng-repeat="item in items.found">
 			<th>{{$index + 1}}</th>
 			<td>{{item.name}}</td>
 			<td>{{item.short_name}}</td>
 			<td>{{item.description}}</td>
-			<td><button class="btn btn-success">Don't want this one!</button></td>
+			<td><button class="btn btn-default" ng-click="items.removeItem({index: $index})">Don't want this one!</button></td>
 		</tr>
 	</tbody>
 </table>
