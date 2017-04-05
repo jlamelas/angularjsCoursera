@@ -1,0 +1,103 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="Beers database">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Beers database</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container" id="app">
+        <br/>
+        <div id="search">
+            <form class="form-group panel-body" action="submit">
+                <div class="input-group">
+                <input name="" class="form-control" type="text" value="" placeholder="Insert the search term"/>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+                </div>
+            </form>
+        </div>
+        <div class="row" v-for="beer in beers">
+            <div class="img col-md-4 col-sm-12 panel-body">
+                <img class="img-thumbnail" width="150" alt="Beer image" :src="beer.image_url"/>
+            </div>
+            <div class="description col-md-8 col-sm-12 panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1 class="panel-title">{{beer.name}}</h1>
+                        <h2 class="panel-title"><small>{{beer.tagline}}</small></h2>
+                    </div>
+                    <div class="panel-body">
+                        <p><strong>Description:</strong> {{beer.description}}</p>
+                        <p><strong>Abv:</strong> {{beer.abv}}%</p>
+                        <p><strong>Ingredients:</strong></p>
+                        <ul>
+                            <li>
+                                <p><strong>Malt:</strong></p>
+                                <ul>
+                                    <li v-for="malt in beer.ingredients.malt">
+                                        Name: {{malt.name}}<br/>
+                                        Amount: {{malt.amount.value}} {{malt.amount.unit}}.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>Hops:</strong></p>
+                                <ul>
+                                    <li v-for="hop in beer.ingredients.hops">
+                                        Name: {{hop.name}} <br/>
+                                        Amount: {{hop.amount.value}} {{hop.amount.unit}}. <br/>
+                                        Add: {{hop.add}}. <br/>
+                                        Attribute: {{hop.attribute}}. 
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>
+                                    <strong>Yeast:</strong> {{beer.ingredients.yeast}}.
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        {{ $data }}
+      <footer>
+        <p>&copy; Company 2015</p>
+      </footer>
+    </div> <!-- /container -->
+        <script src="js/vendor/jquery-1.11.2.min.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/vue@2.2.6"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

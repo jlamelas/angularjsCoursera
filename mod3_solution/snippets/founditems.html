@@ -14,7 +14,7 @@
 			<td>{{item.name}}</td>
 			<td>{{item.short_name}}</td>
 			<td>{{item.description}}</td>
-			<td><button class="btn btn-success">Don't want this one!</button></td>
+			<td><button class="btn btn-success" ng-click="controller.onRemove({index: $index})">Don't want this one!</button></td>
 		</tr>
 	</tbody>
 </table>
