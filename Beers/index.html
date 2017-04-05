@@ -36,9 +36,9 @@
             <div id="search">
                 <form class="form-group">
                     <div class="input-group">
-                        <input name="" class="form-control" type="text" value="" placeholder="Insert the search term"/>
+                        <input name="" class="form-control" type="text" v-model="searchTerm" placeholder="Insert the search term"/>
                         <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+                            <button type="button" class="btn btn-primary" v-on:click="getSearch"><span class="glyphicon glyphicon-search"></span></button>
                         </span>
                     </div>
                 </form>
